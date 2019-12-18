@@ -1,5 +1,13 @@
 language: java
-
+sudo: false
+ 
+cache:
+  directories:
+  - "$HOME/.m2"
+ 
+before_cache:
+- rm -rf $HOME/.m2/repository/es/catalog
+ 
 before_install:
   - sudo apt-get install jq
   - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
@@ -16,5 +24,7 @@ jdk: openjdk12
 #      secure: "971d89a845d9bca9cf50de588e0a10aef0f30894" # encrypted value of your token
 script:
 #  - "sonar-scanner -X" 
-  - "mvn test install -f catalogue-courses/pom.xml"
+  - "mvn test install"
+
+
 

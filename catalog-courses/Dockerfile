@@ -1,6 +1,6 @@
 FROM openjdk:12 
 
-COPY catalogue-courses/target/catalogue-course-1.0.0.jar catalogue-course-1.0.0.jar
+COPY target/catalogue-course-1.0.0.jar catalogue-course-1.0.0.jar
 
 EXPOSE 8080
  
