@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -16,10 +17,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import es.catalog.courses.service.impl.CourseServiceImpl;
-import es.catalog.courses.web.dto.CourseDTO;
 import es.catalog.courses.entity.Course;
 import es.catalog.courses.repository.CourseRepository;
+import es.catalog.courses.service.impl.CourseServiceImpl;
+import es.catalog.courses.web.dto.CourseDTO;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -70,7 +71,7 @@ public class CourseServiceTest {
 		
 		Page<CourseDTO> result = courseService.findAll(0, 5, true);
 		
-		result.forEach(p -> assertTrue(listResult.contains(p)));
+		assertTrue(result.getContent().containsAll(listResult));
 	}
 	
 	@Test
@@ -89,6 +90,7 @@ public class CourseServiceTest {
 		when(courseRepository.findAllByActive(firstPageWithTwoElements, true)).thenReturn(pagedReturn);
 		Page<CourseDTO> result = courseService.findAll(0, 5, true);
 		
-		result.forEach(p -> assertTrue(listResult.contains(p)));
+		
+		assertTrue(result.getContent().containsAll(listResult));
 	}
 }

@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
 	private final CourseRepository courseRepository;
 	
 	public CourseServiceImpl(CourseRepository courseRepository,
-							 @Value("{page}") int page, @Value("${size}") int size) {
+							 @Value("{page}")Integer page, @Value("${size}")Integer size) {
 		super();
 		this.courseRepository = courseRepository; 
 		this.page = page;
